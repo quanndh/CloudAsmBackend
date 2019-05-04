@@ -45,6 +45,6 @@ authRouter.get("/me", (req, res) => {
 
 authRouter.delete("/", (req, res) => {
     req.session.destroy();
-    res.redirect("https://toyshop-client.herokuapp.com/");
+    res.send();
 })
 module.exports = authRouter;
