@@ -17,7 +17,7 @@ authRouter.post("/", (req, res) => {
             } else {
                 if(bcrypt.compareSync(password, userFound.password)){
                     req.session.userAccount = {account};
-                    res.status(200).redirect("http://localhost:3000/")
+                    res.status(200).redirect( "https://toyshop-client.herokuapp.com/"||"http://localhost:3000/")
                 } else {
                     res.status(401).send({success: 0, message: "Sai mat khau"});
                 }
@@ -43,4 +43,8 @@ authRouter.get("/me", (req, res) => {
     }
 })
 
+authRouter.delete("/", (req, res) => {
+    req.session.destroy();
+    res.redirect("https://toyshop-client.herokuapp.com/" || "http://localhost:3000/");
+})
 module.exports = authRouter;
