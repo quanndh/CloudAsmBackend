@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bdParser = require("body-parser");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const apiRouter = require("./api/apiRouter");
 const session = require("express-session");
 
@@ -20,30 +21,32 @@ app.use(session({
   }
 }))
 
-app.use((req, res, next) => {
-  res.setHeader("X-Frame-Options", "ALLOWALL");
+app.use(cors({ origin: ["http://localhost:3000", "https://toyshop-client.herokuapp.com"], credentials: true }))
 
-  if(req.headers.origin){
-    console.log(req.headers.origin)
-    res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
-  }
+// app.use((req, res, next) => {
+//   res.setHeader("X-Frame-Options", "ALLOWALL");
 
-  res.setHeader("Access-Control-Allow-Origin", "https://toyshop-client.herokuapp.com");
+//   if(req.headers.origin){
+//     console.log(req.headers.origin)
+//     res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+//   }
+
+//   res.setHeader("Access-Control-Allow-Origin", "");
 
  
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "POST, GET, PUT, DELETE, OPTIONS"
-  );
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "POST, GET, PUT, DELETE, OPTIONS"
+//   );
 
-  res.setHeader("Access-Control-Allow-Credentials", true);
+//   res.setHeader("Access-Control-Allow-Credentials", true);
   
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Authorization, Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "Authorization, Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
 
 app.use(bdParser.urlencoded({extended:false}))
 app.use(bdParser.json());
