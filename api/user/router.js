@@ -11,7 +11,7 @@ userApiRouter.post("/", (req, res) => {
     const hashPw = bcrypt.hashSync(password, salt);
 
     userModel.create({account, password: hashPw, name})
-        .then(createdUser => res.status(200).redirect("https://toyshop-client.herokuapp.com/login" || "http://localhost:6969/login"))
+        .then(createdUser => res.status(200).redirect( "http://localhost:3000/login" ||"https://toyshop-client.herokuapp.com/login"))
         .catch(err => res.status(500).send({success: 0, err: err}))
 })
 

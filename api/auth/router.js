@@ -31,7 +31,7 @@ authRouter.post("/", (req, res) => {
 
 authRouter.get("/me", (req, res) => {
     if(!req.session.userAccount){
-        res.status(401).send({success: 0, message: "Ban chua dang nhap"})
+        res.status(401).send({success: 0, message: "Ban chua dang nhap"}).redirect("http://localhost:3000/login" || "https://toyshop-client.herokuapp.com/login")
     } else {
         userModel.findOne(req.session.userAccount, "-password")
         .then(userFound => {
