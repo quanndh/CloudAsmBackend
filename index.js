@@ -46,8 +46,7 @@ app.use(bdParser.urlencoded({extended:false}))
 app.use(bdParser.json());
 
 app.use("/api", apiRouter);
-
-app.listen("6969", err => {
+app.listen(process.env.PORT || 6969 , err => {
     if(err) console.log(err);
     else console.log("Server start 6969")
 })
