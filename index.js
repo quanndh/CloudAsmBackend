@@ -24,8 +24,11 @@ app.use((req, res, next) => {
   res.setHeader("X-Frame-Options", "ALLOWALL");
 
   if(req.headers.origin){
-    res.setHeader("Access-Control-Allow-Origin", req.headers.origin || req.headers.referer);
+    console.log(req.headers.origin)
+    res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
   }
+  
+  res.setHeader("Access-Control-Allow-Origin", "https://toyshop-client.herokuapp.com/");
 
  
   res.setHeader(
